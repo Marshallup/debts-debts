@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "Vue.volar",
+    "ecmel.vscode-html-css",
+    "stylelint.vscode-stylelint",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "csstools.postcss",
+    "rvest.vs-code-prettier-eslint"
+  ]
+}
