@@ -5,6 +5,7 @@
     "stylelint.vscode-stylelint",
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
+    "wix.vscode-import-cost",
     "csstools.postcss",
     "rvest.vs-code-prettier-eslint"
   ]

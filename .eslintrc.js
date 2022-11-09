@@ -15,6 +15,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2021,
   },
+  plugins: ['prettier'],
   rules: {
     // override/add rules settings here, such as:
     // 'vue/no-unused-vars': 'error'

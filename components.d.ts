@@ -7,7 +7,31 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AboutLayout: typeof import('./src/layouts/AboutLayout.vue')['default']
+    AddForm: typeof import('./src/components/forms/AddForm.vue')['default']
+    AnotherJsx: typeof import('./src/components/AnotherJsx.tsx')['default']
+    ButtonUi: typeof import('./src/components/ui/ButtonUi.vue')['default']
     component: typeof import('vue')['component']
+    DebtsItem: typeof import('./src/components/debtsItem/DebtsItem.vue')['default']
+    DebtsItemList: typeof import('./src/components/debtsItem/DebtsItemList.vue')['default']
+    DebtsItemMultiple: typeof import('./src/components/debtsItem/DebtsItemMultiple.vue')['default']
+    DebtsItemPerson: typeof import('./src/components/debtsItem/DebtsItemPerson.vue')['default']
+    DebtsItemPersons: typeof import('./src/components/debtsItem/DebtsItemPersons.vue')['default']
+    DebtsItemSingle: typeof import('./src/components/debtsItem/DebtsItemSingle.vue')['default']
+    DebtsItemWrapper: typeof import('./src/components/debtsItem/DebtsItemWrapper.vue')['default']
+    Default: typeof import('./src/layouts/default.vue')['default']
+    DefaultLayout: typeof import('./src/layouts/DefaultLayout.vue')['default']
+    EmptyLayout: typeof import('./src/layouts/EmptyLayout.vue')['default']
+    FormItemUi: typeof import('./src/components/ui/form/FormItemUi.vue')['default']
+    HeaderDebtsDebts: typeof import('./src/components/header/HeaderDebtsDebts.vue')['default']
+    HeaderDebtsDebtsItem: typeof import('./src/components/header/HeaderDebtsDebtsItem.vue')['default']
+    HeaderHeightUi: typeof import('./src/components/ui/HeaderHeightUi.vue')['default']
+    HeaderMain: typeof import('./src/components/header/HeaderMain.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    InputDatePicker: typeof import('./src/components/ui/form/InputDatePicker.vue')['default']
+    InputUi: typeof import('./src/components/ui/form/InputUi.vue')['default']
+    JsxComp: typeof import('./src/components/JsxComp.tsx')['default']
+    Typography: typeof import('./src/components/Ui/Typography.vue')['default']
+    TypographyUi: typeof import('./src/components/ui/TypographyUi.vue')['default']
   }
 }
