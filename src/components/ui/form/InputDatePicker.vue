@@ -1,23 +1,40 @@
 <script setup lang="ts">
   import { useField } from 'vee-validate'
   import Datepicker, { VueDatePicker } from '@vuepic/vue-datepicker'
+  import { getUniqID } from '@/utils/helpers'
+  import { FormItemUiProps } from '@/types/formItemUiTypes'
 
-  interface InputDatePickerProps {
+  interface InputDatePickerProps
+    extends Omit<
+      VueDatePicker,
+      | 'uid'
+      | 'model-type'
+      | 'format'
+      | 'auto-apply'
+      | 'dark'
+      | 'locale'
+      | 'enable-time-picker'
+    > {
     name: string
+    formItemProps?: FormItemUiProps
   }
 
   const props = defineProps<InputDatePickerProps>()
 
   const { name } = toRefs(props)
 
+  const uid = ref(String(getUniqID()))
+
+  const id = computed(() => `dp-input-${unref(uid)}`)
+
   const { value, errorMessage } = useField<VueDatePicker['modelValue']>(name)
 </script>
 
 <template>
-  <div>
-    {{ errorMessage }}
+  <FormItemUi :id="id" :error-message="errorMessage" v-bind="formItemProps">
     <Datepicker
       v-model="value"
+      :uid="uid"
       model-type="dd.MM.yyyy"
       format="dd.MM.yyyy"
       auto-apply
@@ -26,7 +43,7 @@
       :enable-time-picker="false"
       v-bind="$attrs"
     ></Datepicker>
-  </div>
+  </FormItemUi>
 </template>
 
 <style lang="scss">

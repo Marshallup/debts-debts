@@ -19,6 +19,8 @@ declare module '@vue/runtime-core' {
     DebtsItemPersons: typeof import('./src/components/debtsItem/DebtsItemPersons.vue')['default']
     DebtsItemSingle: typeof import('./src/components/debtsItem/DebtsItemSingle.vue')['default']
     DebtsItemWrapper: typeof import('./src/components/debtsItem/DebtsItemWrapper.vue')['default']
+    DebtsPersonItem: typeof import('./src/components/debtsPerson/DebtsPersonItem.vue')['default']
+    DebtsPersonList: typeof import('./src/components/debtsPerson/DebtsPersonList.vue')['default']
     Default: typeof import('./src/layouts/default.vue')['default']
     DefaultLayout: typeof import('./src/layouts/DefaultLayout.vue')['default']
     EmptyLayout: typeof import('./src/layouts/EmptyLayout.vue')['default']

@@ -17,6 +17,7 @@ module.exports = {
   },
   plugins: ['prettier'],
   rules: {
+    '@typescript-eslint/no-empty-interface': 'off',
     // override/add rules settings here, such as:
     // 'vue/no-unused-vars': 'error'
   },

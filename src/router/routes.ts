@@ -14,24 +14,32 @@ export const routes: RouteRecordRaw[] = [
     ],
   },
   {
-    path: '/add-debts',
+    path: '/add',
     component: EmptyLayout,
     children: [
       {
-        path: '',
+        path: 'debts',
         name: 'addDebts',
         component: () => import('@/pages/AddPage.vue'),
+        children: [
+          {
+            path: ':id',
+            name: 'updateDebts',
+            component: () => import('@/pages/AddPage.vue'),
+          },
+        ],
       },
-    ],
-  },
-  {
-    path: '/add-loan',
-    component: EmptyLayout,
-    children: [
       {
-        path: '',
+        path: 'loan',
         name: 'addLoan',
         component: () => import('@/pages/AddPage.vue'),
+        children: [
+          {
+            path: ':id',
+            name: 'updateLoan',
+            component: () => import('@/pages/AddPage.vue'),
+          },
+        ],
       },
     ],
   },

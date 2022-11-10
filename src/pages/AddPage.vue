@@ -1,9 +1,39 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import { useRoute, useRouter } from 'vue-router'
+
+  const router = useRouter()
+  const route = useRoute()
+
+  const isDebts = computed(() => route.name === 'addDebts')
+
+  const persons = [
+    {
+      id: '1',
+      name: 'Василий',
+    },
+    {
+      id: '2',
+      name: 'Петр',
+    },
+  ]
+
+  function onChangeType() {
+    if (unref(isDebts)) {
+      router.push({ name: 'addLoan' })
+      return
+    }
+
+    router.push({ name: 'addDebts' })
+  }
+</script>
 
 <template>
-  <div>
-    <div class="max-w-[500px] mx-auto">
-      <AddForm />
+  <div class="max-w-[500px] mx-auto">
+    <div class="mb-5">
+      <DebtsPersonList :persons="persons" />
+    </div>
+    <div>
+      <AddForm :is-debts="isDebts" @change-type="onChangeType" />
     </div>
   </div>
 </template>
