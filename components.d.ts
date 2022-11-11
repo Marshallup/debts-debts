@@ -11,6 +11,7 @@ declare module '@vue/runtime-core' {
     AddForm: typeof import('./src/components/forms/AddForm.vue')['default']
     AnotherJsx: typeof import('./src/components/AnotherJsx.tsx')['default']
     ButtonUi: typeof import('./src/components/ui/ButtonUi.vue')['default']
+    ChangeDebtsLoan: typeof import('./src/components/ChangeDebtsLoan.vue')['default']
     component: typeof import('vue')['component']
     CrossIcon: typeof import('./src/components/ui/icons/CrossIcon.vue')['default']
     CurrencyInputUi: typeof import('./src/components/ui/form/CurrencyInputUi.vue')['default']

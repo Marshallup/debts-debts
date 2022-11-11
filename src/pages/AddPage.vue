@@ -1,55 +1,23 @@
 <script setup lang="ts">
-  import { useRoute, useRouter } from 'vue-router'
+  const debtStore = useDebtStore()
 
-  const router = useRouter()
-  const route = useRoute()
-
-  const isDebts = computed(() => route.name === 'addDebts')
-
-  const toggleFormText = computed(() => {
-    if (unref(isDebts)) {
-      return 'Добавить в займы'
-    }
-
-    return 'Добавить в долги'
+  debtStore.addDebt({
+    person: { id: '2', name: 'Виталий' },
+    sum: 12933,
+    type: 'debt',
   })
 
-  const persons = [
-    {
-      id: '1',
-      name: 'Василий',
-    },
-    {
-      id: '2',
-      name: 'Петр',
-    },
-  ]
+  debtStore.getAllDebtsDB().then((debt) => {
+    console.log(debt, 'debts')
+  })
 
-  function onChangeType() {
-    if (unref(isDebts)) {
-      router.push({ name: 'addLoan' })
-      return
-    }
-
-    router.push({ name: 'addDebts' })
-  }
+  debtStore.getDebt('5').then((debt) => {
+    console.log(debt, 'debt')
+  })
 </script>
 
 <template>
-  <div class="max-w-[500px] mx-auto">
-    <div class="mb-5">
-      <DebtsPersonList :persons="persons" />
-    </div>
-    <div>
-      <AddForm :is-debts="isDebts">
-        <template #buttonLeft>
-          <ButtonUi type="button" class="mr-3" @click="onChangeType"
-            >{{ toggleFormText }}
-          </ButtonUi>
-        </template>
-      </AddForm>
-    </div>
-  </div>
+  <ChangeDebtsLoan />
 </template>
 
 <style scoped></style>

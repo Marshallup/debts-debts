@@ -70,6 +70,7 @@
     "useCounterStore": true,
     "useCssModule": true,
     "useCssVars": true,
+    "useDebtStore": true,
     "useRoute": true,
     "useRouter": true,
     "useSlots": true,

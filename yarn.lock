@@ -1345,6 +1345,11 @@
   resolved "https://registry.yarnpkg.com/@types/trusted-types/-/trusted-types-2.0.2.tgz#fc25ad9943bcac11cceb8168db4f275e0e72e756"
   integrity sha512-F5DIZ36YVLE+PN+Zwws4kJogq47hNgX3Nx6WyDJ3kcplxyke3XIzB8uK5n/Lpm1HBsbGzd6nmGehL8cPekP+Tg==
 
+"@types/uniqid@^5.3.2":
+  version "5.3.2"
+  resolved "https://registry.yarnpkg.com/@types/uniqid/-/uniqid-5.3.2.tgz#79c4b0eb6f6143de2f44441b0ce47f0f8c18c4ef"
+  integrity sha512-/NYoaZpWsnAJDsGYeMNDeG3p3fuUb4AiC7MfKxi5VSu18tXd08w6Ch0fKW94T4FeLXXZwZPoFgHA1O0rDYKyMQ==
+
 "@typescript-eslint/eslint-plugin@^5.0.0":
   version "5.40.1"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-5.40.1.tgz#3203a6ff396b1194083faaa6e5110c401201d7d5"
@@ -3007,7 +3012,7 @@ husky@^8.0.1:
   resolved "https://registry.yarnpkg.com/husky/-/husky-8.0.1.tgz#511cb3e57de3e3190514ae49ed50f6bc3f50b3e9"
   integrity sha512-xs7/chUH/CKdOCs7Zy0Aev9e/dKOMZf3K1Az1nar3tzlv0jfqnYtu235bstsWTmXOR0EfINrPa97yy4Lz6RiKw==
 
-idb@^7.0.1:
+idb@^7.0.1, idb@^7.1.1:
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/idb/-/idb-7.1.1.tgz#d910ded866d32c7ced9befc5bfdf36f572ced72b"
   integrity sha512-gchesWBzyvGHRO9W8tzUWFDycow5gwjvFKfyV9FF32Y7F50yZMp7mP+T2mJIWFx49zicqyC4uefHM17o6xKIVQ==
@@ -4904,6 +4909,11 @@ unimport@^0.6.7:
     scule "^0.3.2"
     strip-literal "^0.4.2"
     unplugin "^0.9.6"
+
+uniqid@^5.4.0:
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/uniqid/-/uniqid-5.4.0.tgz#4e17bfcab66dfe33563411ae0c801f46ef964e66"
+  integrity sha512-38JRbJ4Fj94VmnC7G/J/5n5SC7Ab46OM5iNtSstB/ko3l1b5g7ALt4qzHFgGciFkyiRNtDXtLNb+VsxtMSE77A==
 
 unique-string@^2.0.0:
   version "2.0.0"

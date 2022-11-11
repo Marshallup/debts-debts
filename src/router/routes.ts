@@ -22,11 +22,17 @@ export const routes: RouteRecordRaw[] = [
       {
         path: 'debts',
         name: ROUTES_NAMES.ADD_DEBTS,
+        meta: {
+          isDebts: true,
+        },
         component: () => import('@/pages/AddPage.vue'),
         children: [
           {
             path: ':id',
             name: ROUTES_NAMES.UPDATE_DEBTS,
+            meta: {
+              isDebts: true,
+            },
             component: () => import('@/pages/AddPage.vue'),
           },
         ],
@@ -34,11 +40,17 @@ export const routes: RouteRecordRaw[] = [
       {
         path: 'loan',
         name: ROUTES_NAMES.ADD_LOAN,
+        meta: {
+          isLoan: true,
+        },
         component: () => import('@/pages/AddPage.vue'),
         children: [
           {
             path: ':id',
             name: ROUTES_NAMES.UPDATE_LOAN,
+            meta: {
+              isLoan: true,
+            },
             component: () => import('@/pages/AddPage.vue'),
           },
         ],
