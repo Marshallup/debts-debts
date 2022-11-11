@@ -1,4 +1,5 @@
 import { RouteRecordRaw } from 'vue-router'
+import ROUTES_NAMES from './routesNames'
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
 import EmptyLayout from '@/layouts/EmptyLayout.vue'
 
@@ -9,6 +10,7 @@ export const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '',
+        name: ROUTES_NAMES.HOME,
         component: () => import('@/pages/HomePage.vue'),
       },
     ],
@@ -19,24 +21,24 @@ export const routes: RouteRecordRaw[] = [
     children: [
       {
         path: 'debts',
-        name: 'addDebts',
+        name: ROUTES_NAMES.ADD_DEBTS,
         component: () => import('@/pages/AddPage.vue'),
         children: [
           {
             path: ':id',
-            name: 'updateDebts',
+            name: ROUTES_NAMES.UPDATE_DEBTS,
             component: () => import('@/pages/AddPage.vue'),
           },
         ],
       },
       {
         path: 'loan',
-        name: 'addLoan',
+        name: ROUTES_NAMES.ADD_LOAN,
         component: () => import('@/pages/AddPage.vue'),
         children: [
           {
             path: ':id',
-            name: 'updateLoan',
+            name: ROUTES_NAMES.UPDATE_LOAN,
             component: () => import('@/pages/AddPage.vue'),
           },
         ],

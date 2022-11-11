@@ -10,21 +10,24 @@ export function getVisualNumVal(numVal: string | number | null) {
   return numVal
 }
 
-export function getNumberOrNull(
-  value: string | number | null,
-  defaultVal: number
-): number | null {
+export function getNumberOrNull(value: string | number | null): number | null {
   if (!value) {
     return null
   }
 
-  const stringVal = String(value)
+  const stringVal = String(value).replace(/\s+/g, '')
   const validFloatNumber = replaceCommaByDots(stringVal)
   const parseNumber = parseFloat(validFloatNumber)
+
+  if (parseNumber === 0) {
+    return null
+  }
+
+  console.log(parseNumber, 'parase')
 
   if (!isNaN(parseNumber)) {
     return parseNumber
   }
 
-  return defaultVal
+  return null
 }

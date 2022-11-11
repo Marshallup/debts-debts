@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  import ROUTES_NAMES from '@/router/routesNames'
+
   export interface DebtsPersonItemProps {
     id: string
     name: string
@@ -8,12 +10,12 @@
 
   const routeName = computed(() => {
     switch (route.name) {
-      case 'addDebts':
-      case 'updateDebts':
-        return 'updateDebts'
-      case 'addLoan':
-      case 'updateLoan':
-        return 'updateLoan'
+      case ROUTES_NAMES.ADD_DEBTS:
+      case ROUTES_NAMES.UPDATE_DEBTS:
+        return ROUTES_NAMES.UPDATE_DEBTS
+      case ROUTES_NAMES.ADD_LOAN:
+      case ROUTES_NAMES.UPDATE_LOAN:
+        return ROUTES_NAMES.UPDATE_LOAN
       default:
         return '#'
     }

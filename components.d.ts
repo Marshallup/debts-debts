@@ -12,6 +12,8 @@ declare module '@vue/runtime-core' {
     AnotherJsx: typeof import('./src/components/AnotherJsx.tsx')['default']
     ButtonUi: typeof import('./src/components/ui/ButtonUi.vue')['default']
     component: typeof import('vue')['component']
+    CrossIcon: typeof import('./src/components/ui/icons/CrossIcon.vue')['default']
+    CurrencyInputUi: typeof import('./src/components/ui/form/CurrencyInputUi.vue')['default']
     DebtsItem: typeof import('./src/components/debtsItem/DebtsItem.vue')['default']
     DebtsItemList: typeof import('./src/components/debtsItem/DebtsItemList.vue')['default']
     DebtsItemMultiple: typeof import('./src/components/debtsItem/DebtsItemMultiple.vue')['default']
@@ -33,6 +35,7 @@ declare module '@vue/runtime-core' {
     InputDatePicker: typeof import('./src/components/ui/form/InputDatePicker.vue')['default']
     InputUi: typeof import('./src/components/ui/form/InputUi.vue')['default']
     JsxComp: typeof import('./src/components/JsxComp.tsx')['default']
+    NumberInputUi: typeof import('./src/components/ui/form/NumberInputUi.vue')['default']
     Typography: typeof import('./src/components/Ui/Typography.vue')['default']
     TypographyUi: typeof import('./src/components/ui/TypographyUi.vue')['default']
   }

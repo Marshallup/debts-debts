@@ -9,7 +9,7 @@
   }
 
   interface AddFormEmits {
-    (e: 'changeType'): void
+    (e: 'submit'): void
   }
 
   interface IFormData {
@@ -19,7 +19,7 @@
     sum: number | null
   }
 
-  const props = defineProps<AddFormProps>()
+  defineProps<AddFormProps>()
   const emit = defineEmits<AddFormEmits>()
 
   const schema = Yup.object().shape(
@@ -31,10 +31,7 @@
         .transform((_, originalValue) => getDateFromString(originalValue))
         .when('dateTo', (dateTo, schema) => {
           if (dateTo) {
-            return schema.max(
-              addDays(dateTo, -1),
-              'Дата начала не может быть больше даты окончания'
-            )
+            return schema.max(addDays(dateTo, -1), 'Некорректная дата начала')
           }
         })
         .required('Заполните дату начала'),
@@ -46,13 +43,14 @@
           if (dateFrom) {
             return schema.min(
               addDays(dateFrom, 1),
-              'Дата окончания не может быть меньше даты начала'
+              'Некорректная дата окончания'
             )
           }
         }),
       sum: Yup.number()
         .required('Заполните сумму')
         .typeError('Сумма должна быть числом')
+        .moreThan(0, 'Сумма должна быть больше 0')
         .nullable(),
     },
     [['dateFrom', 'dateTo']]
@@ -68,26 +66,20 @@
     validationSchema: schema,
   })
 
-  const toggleFormText = computed(() => {
-    if (props.isDebts) {
-      return 'Добавить в займы'
-    }
-
-    return 'Добавить в долги'
-  })
-
   const onSubmit = handleSubmit((values) => {
     console.log(values, 'values')
-  })
 
-  function onClickChangeForm() {
-    emit('changeType')
-  }
+    emit('submit')
+  })
 </script>
 
 <template>
   <form @submit="onSubmit">
-    <InputUi name="name" :form-item-props="{ label: 'Имя' }" />
+    <InputUi
+      name="name"
+      :default-clear-value="''"
+      :form-item-props="{ label: 'Имя' }"
+    />
 
     <div class="flex items-center gap-2 w-full">
       <InputDatePicker
@@ -104,16 +96,10 @@
       />
     </div>
 
-    <InputUi
-      name="sum"
-      type="number"
-      :form-item-props="{ label: 'Сумма долга:' }"
-    />
+    <CurrencyInputUi name="sum" :form-item-props="{ label: 'Сумма долга:' }" />
 
     <div class="flex justify-between mt-10">
-      <ButtonUi type="button" class="mr-3" @click="onClickChangeForm"
-        >{{ toggleFormText }}
-      </ButtonUi>
+      <slot name="buttonLeft" />
       <ButtonUi> Добавить </ButtonUi>
     </div>
   </form>

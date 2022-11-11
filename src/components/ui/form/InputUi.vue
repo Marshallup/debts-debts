@@ -1,73 +1,127 @@
 <script setup lang="ts">
   import { useField } from 'vee-validate'
-  import { getUniqID } from '@/utils/helpers'
-  import { getVisualNumVal, getNumberOrNull } from '@/utils/valueFormatters'
   import { FormItemUiProps } from '@/types/formItemUiTypes'
 
-  interface InputUiProps {
+  export type OrigInputValue = string | number | null
+
+  export interface InputUiProps {
     name: string
     formItemProps?: FormItemUiProps
-    type?: 'string' | 'number'
+    modelValue?: OrigInputValue
+    inputValue?: string | null
+    isBindValues?: boolean
+    defaultClearValue?: null | string
+    setInputRef?: (el: HTMLInputElement) => void
   }
 
-  type OrigInputValue = string | number | null
+  interface InputUiEmits {
+    (e: 'onBlur', val: OrigInputValue): void
+    (e: 'update:modelValue', val: OrigInputValue): void
+    (e: 'update:inputValue', val: string | null): void
+    (e: 'clearValue', val: InputUiProps['defaultClearValue']): void
+  }
 
   const props = withDefaults(defineProps<InputUiProps>(), {
     type: 'string',
     formItemProps: () => ({}),
+    setInputRef: () => ({}),
+    modelValue: null,
+    inputValue: null,
+    defaultClearValue: null,
+    isBindValues: false,
   })
+
+  const emit = defineEmits<InputUiEmits>()
 
   const { name } = toRefs(props)
 
-  const id = ref(`input-id-${getUniqID()}`)
-
   const { value: origValue, errorMessage } = useField<OrigInputValue>(name)
 
-  const value = ref(unref(origValue))
+  const bindValue = computed({
+    get: () => props.modelValue,
+    set: (val) => emit('update:modelValue', val),
+  })
 
-  function getValueInputType(val: OrigInputValue) {
-    switch (props.type) {
-      case 'number':
-        return getNumberOrNull(val, unref(origValue) as number)
-      default:
-        return val
-    }
-  }
+  const id = ref(`input-id-${getUniqID()}`)
 
-  function setInputValue(val: OrigInputValue) {
-    origValue.value = getValueInputType(val)
-  }
+  const innerValue = ref(unref(origValue) as string | null)
 
-  function setVisualValueInput(val: OrigInputValue) {
-    switch (props.type) {
-      case 'number': {
-        value.value = getVisualNumVal(val)
-        break
+  const inputInnerValue = computed({
+    get: () => {
+      if (props.isBindValues) {
+        return props.inputValue
       }
-      default:
-        value.value = val
-        break
-    }
+      return unref(innerValue)
+    },
+    set: (val) => {
+      if (props.isBindValues) {
+        emit('update:inputValue', val)
+      } else {
+        innerValue.value = val
+      }
+    },
+  })
+
+  function setValue(val: OrigInputValue) {
+    origValue.value = val
+    bindValue.value = val
   }
 
   function onBlur() {
-    setVisualValueInput(unref(origValue))
+    emit('onBlur', unref(origValue))
   }
 
-  watch(value, (inputVal) => {
-    setInputValue(inputVal)
+  function onInput(event: Event) {
+    const { value: inputValue } = event.target as HTMLInputElement
+
+    innerValue.value = inputValue
+  }
+
+  function setInnerValue(val: string | null) {
+    innerValue.value = val
+  }
+
+  function clearInputValues() {
+    setValue(props.defaultClearValue)
+    setInnerValue(props.defaultClearValue)
+    emit('clearValue', props.defaultClearValue)
+  }
+
+  watch([inputInnerValue, bindValue], ([inputVal, bindVal]) => {
+    if (props.isBindValues) {
+      setValue(bindVal)
+    } else {
+      setValue(inputVal)
+    }
+  })
+
+  defineExpose({
+    setInnerValue,
   })
 </script>
 
 <template>
   <FormItemUi :id="id" :error-message="errorMessage" v-bind="formItemProps">
-    <input
-      :id="id"
-      v-model="value"
-      class="outline-none p-2 bg-base-300 text-white w-full rounded-[4px]"
-      v-bind="$attrs"
-      @blur="onBlur"
-    />
+    <div class="relative">
+      <div>
+        <div
+          v-if="origValue"
+          class="absolute max-w-[16px] top-1/2 right-[12px] -translate-y-1/2 cursor-pointer"
+          @click="clearInputValues"
+        >
+          <CrossIcon />
+        </div>
+      </div>
+      <input
+        :id="id"
+        :ref="(el) => setInputRef(el as HTMLInputElement)"
+        :value="inputInnerValue"
+        class="outline-none py-2 pl-2 pr-4 bg-base-300 text-white w-full rounded-[4px]"
+        v-bind="$attrs"
+        @blur="onBlur"
+        @input="onInput"
+      />
+    </div>
   </FormItemUi>
 </template>
 
